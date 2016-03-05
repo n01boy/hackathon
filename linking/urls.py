@@ -25,4 +25,6 @@ router.register(r'sensor', views.SensorViewSet)
 urlpatterns = [
     url(r'^linking/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^dashboard','web.views.dataview'),
+    url(r'^api/linking/sensor','web.views.ajaxdataview')
 ]
