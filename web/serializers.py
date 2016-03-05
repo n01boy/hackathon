@@ -3,7 +3,7 @@
 from .models import Sensor
 from rest_framework import serializers
 
-class TodoSerializer(serializers.HyperlinkedModelSerializer):
+class SensorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sensor
-        fields = ('bid', 'x_int', 'y_int', 'z_int', 'timestamp')
+        fields = ('bid', 'value_x', 'value_y', 'value_z', 'timestamp')
