@@ -12,6 +12,7 @@ pycosat==0.6.1
 PyYAML==3.11
 requests==2.9.1
 requests-oauthlib==0.6.1
+simplejson==3.8.2
 six==1.10.0
 tweepy==3.5.0
 uWSGI==2.0.12
