@@ -35,7 +35,7 @@ def ajaxdataview(req):
 
 
 def getCurrencyDBData(reqbid=None):
-    queryset = Sensor.objects.order_by("-timestamp")[:200]
+    queryset = Sensor.objects.order_by("-timestamp")[:15]
     return queryset
 
 
