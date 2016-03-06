@@ -16,14 +16,16 @@ class SensorViewSet(ModelViewSet):
 
 
 def dataview(req):
-    device_list = serializers.serialize("json", "")
+    devices = Sensor.objects.all()
+    devices.query.group_by = ['bid']
+    device_list = list(devices.values_list('bid', flat=True))
     contexts = RequestContext(req, {"device_list": device_list})
     template = loader.get_template('view.html')
     return HttpResponse(template.render(contexts))
 
 
 def ajaxdataview(req):
-    dbdata = getCurrencyDBData()
+    dbdata = getCurrencyDBData(req.GET['bid'])
     bid = json.dumps(list(dbdata.values_list('bid', flat=True)))
     value_x = json.dumps(list(dbdata.values_list('value_x', flat=True)))
     value_y = json.dumps(list(dbdata.values_list('value_y', flat=True)))
@@ -35,7 +37,7 @@ def ajaxdataview(req):
 
 
 def getCurrencyDBData(reqbid=None):
-    queryset = Sensor.objects.order_by("-timestamp")[0:25]
+    queryset = Sensor.objects.filter(bid=reqbid).order_by("-timestamp")[0:25]
     return queryset
 
 
